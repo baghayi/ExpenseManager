@@ -1,4 +1,4 @@
-package org.adeveloper.expensechecker.util;
+package org.adeveloper.expensemanager.util;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

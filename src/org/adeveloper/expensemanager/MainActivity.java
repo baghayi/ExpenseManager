@@ -1,9 +1,9 @@
-package org.adeveloper.expensechecker;
+package org.adeveloper.expensemanager;
 
 import java.text.NumberFormat;
 
-import org.adeveloper.expensechecker.EventListener.NewExpense;
-import org.adeveloper.expensechecker.util.DatabaseConnectionFactory;
+import org.adeveloper.expensemanager.EventListener.NewExpense;
+import org.adeveloper.expensemanager.util.DatabaseConnectionFactory;
 
 import android.app.Activity;
 import android.content.Intent;

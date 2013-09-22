@@ -1,7 +1,7 @@
-package org.adeveloper.expensechecker;
+package org.adeveloper.expensemanager;
 
-import org.adeveloper.expensechecker.EventListener.CalculateBalance;
-import org.adeveloper.expensechecker.EventListener.RealtimeUserBalance;
+import org.adeveloper.expensemanager.EventListener.CalculateBalance;
+import org.adeveloper.expensemanager.EventListener.RealtimeUserBalance;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -1,6 +1,6 @@
-package org.adeveloper.expensechecker.util;
+package org.adeveloper.expensemanager.util;
 
-import org.adeveloper.expensechecker.R;
+import org.adeveloper.expensemanager.R;
 
 import android.content.Context;
 import android.view.Gravity;

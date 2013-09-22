@@ -1,4 +1,4 @@
-package org.adeveloper.expensechecker;
+package org.adeveloper.expensemanager;
 
 
 import android.content.ContentValues;

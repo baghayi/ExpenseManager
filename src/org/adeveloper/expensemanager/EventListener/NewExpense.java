@@ -1,10 +1,10 @@
-package org.adeveloper.expensechecker.EventListener;
+package org.adeveloper.expensemanager.EventListener;
 
-import org.adeveloper.expensechecker.Balance;
-import org.adeveloper.expensechecker.Expense;
-import org.adeveloper.expensechecker.MainActivity;
-import org.adeveloper.expensechecker.util.DatabaseConnectionFactory;
-import org.adeveloper.expensechecker.util.Notification;
+import org.adeveloper.expensemanager.Balance;
+import org.adeveloper.expensemanager.Expense;
+import org.adeveloper.expensemanager.MainActivity;
+import org.adeveloper.expensemanager.util.DatabaseConnectionFactory;
+import org.adeveloper.expensemanager.util.Notification;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

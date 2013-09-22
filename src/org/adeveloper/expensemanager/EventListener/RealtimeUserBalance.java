@@ -1,4 +1,4 @@
-package org.adeveloper.expensechecker.EventListener;
+package org.adeveloper.expensemanager.EventListener;
 
 import java.text.NumberFormat;
 
