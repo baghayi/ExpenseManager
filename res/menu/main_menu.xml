@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item 
+        android:id="@+id/manage_resource" 
+        android:title="@string/manage_resource_menu_title" />
+    
+
+</menu>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Expense Checker</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="current_balance_title">موجودی فعلی: </string>
+    <string name="manage_resource_menu_title">مدیریت منابع</string>
+    <string name="lang_manage_resources">مدیریت منابع</string>
+    <string name="lang_increase_balance_label">افزایش موجودی:</string>
+    <string name="lang_decrease_balance_label">کاهش موجودی:</string>
+    <string name="lang_increase_button_label">افزایش</string>
+    <string name="lang_decrease_button_label">کاهش</string>
+    <string name="lang_currency_type_rial">ریال</string>
+    <string name="lang_default_balance_zero">0</string>
+    <string name="lang_mission_succeed">عملیات با موفقیت انجام شد.</string>
+    <string name="lang_mission_failed">خطا! لطفا دوباره تلاش نمایید.</string>
+    <string name="lang_stuff_bought">چه خریدی جیگر؟ ها؟</string>
+    <string name="lang_stuff_price">چقد واسشون دادی؟ ها</string>
+    <string name="lang_submit">ثبتش کن داداش!</string>
+
+</resources>
