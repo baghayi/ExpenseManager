@@ -17,5 +17,9 @@
     <string name="lang_stuff_bought">چه خریدی جیگر؟ ها؟</string>
     <string name="lang_stuff_price">چقد واسشون دادی؟ ها</string>
     <string name="lang_submit">ثبتش کن داداش!</string>
+    <string name="lang_balance_increase_checkbox">+</string>
+    <string name="lang_balance_decrease_checkbox">-</string>
+    <string name="balance_type_image">نوع عملیات</string>
+    
 
 </resources>
