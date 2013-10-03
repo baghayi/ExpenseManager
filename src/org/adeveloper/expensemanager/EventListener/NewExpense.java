@@ -3,6 +3,7 @@ package org.adeveloper.expensemanager.EventListener;
 import org.adeveloper.expensemanager.MainActivity;
 import org.adeveloper.expensemanager.db.Database;
 import org.adeveloper.expensemanager.db.DatabaseConnectionFactory;
+import org.adeveloper.expensemanager.db.ExpensemanagerDatasource;
 import org.adeveloper.expensemanager.lib.Balance;
 import org.adeveloper.expensemanager.lib.Expense;
 import org.adeveloper.expensemanager.util.Notification;
@@ -49,7 +50,8 @@ public class NewExpense implements OnClickListener
 			return;
 		}
 		
-		SQLiteDatabase database = getDatabaseConnection();
+		ExpensemanagerDatasource datasource = getDatabaseConnection();
+		SQLiteDatabase database = datasource.open();
 		
 		boolean result = false;
 		try
@@ -68,7 +70,7 @@ public class NewExpense implements OnClickListener
 		catch (Exception e){}
 		finally {
 			database.endTransaction();
-			database.close();
+			datasource.close();
 		}
 
 		((MainActivity) context).updateCurrentAvailableMoney();
@@ -76,7 +78,7 @@ public class NewExpense implements OnClickListener
 	}
 	
 	// TODO feels like code smell!
-	private SQLiteDatabase getDatabaseConnection(){
+	private ExpensemanagerDatasource getDatabaseConnection(){
 		return new DatabaseConnectionFactory(context)
 				.create(Database.ExpenseManager);
 	}

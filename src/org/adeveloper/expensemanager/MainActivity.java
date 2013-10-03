@@ -5,11 +5,11 @@ import java.text.NumberFormat;
 import org.adeveloper.expensemanager.EventListener.NewExpense;
 import org.adeveloper.expensemanager.db.Database;
 import org.adeveloper.expensemanager.db.DatabaseConnectionFactory;
+import org.adeveloper.expensemanager.db.ExpensemanagerDatasource;
 import org.adeveloper.expensemanager.lib.Balance;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,8 +34,8 @@ public class MainActivity extends Activity {
 	
 	
 	public void updateCurrentAvailableMoney(){
-		SQLiteDatabase database = getDatabaseConnection();
-		Balance balance = new Balance(database);
+		ExpensemanagerDatasource datasource = getDatabaseConnection();
+		Balance balance = new Balance(datasource.open());
 		
 		TextView currentBalanceView = (TextView) findViewById(R.id.current_balance);
 		double currentBalance = (double) balance.getCurrentBalance();
@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
 		
 		TextView currency = (TextView) findViewById(R.id.currency);
 		currency.setText("ریال");
-		database.close();
+		datasource.close();
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class MainActivity extends Activity {
 	}
 	
 	// TODO this method feels like a code smell!
-	private SQLiteDatabase getDatabaseConnection()
+	private ExpensemanagerDatasource getDatabaseConnection()
 	{
 		return new DatabaseConnectionFactory(this)
 		.create(Database.ExpenseManager);

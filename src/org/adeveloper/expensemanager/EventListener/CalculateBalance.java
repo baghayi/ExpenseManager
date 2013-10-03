@@ -2,13 +2,13 @@ package org.adeveloper.expensemanager.EventListener;
 
 import org.adeveloper.expensemanager.db.Database;
 import org.adeveloper.expensemanager.db.DatabaseConnectionFactory;
+import org.adeveloper.expensemanager.db.ExpensemanagerDatasource;
 import org.adeveloper.expensemanager.lib.Balance;
 import org.adeveloper.expensemanager.util.Notification;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -70,8 +70,8 @@ public final class CalculateBalance implements OnClickListener
 			@Override
 			public void onClick(DialogInterface dialog, int which)
 			{
-				SQLiteDatabase database = CalculateBalance.this.getDatabaseConnection();
-				Balance balance = new Balance(database);
+				ExpensemanagerDatasource datasource = CalculateBalance.this.getDatabaseConnection();
+				Balance balance = new Balance(datasource.open());
 				
 				boolean result;
 				
@@ -83,7 +83,7 @@ public final class CalculateBalance implements OnClickListener
 					result = false;
 				}
 				
-				database.close();
+				datasource.close();
 				
 				Notification.successFailureToastMessage(context, result);
 				
@@ -98,7 +98,7 @@ public final class CalculateBalance implements OnClickListener
 	}
 	
 	// TODO this method feels like a code smell!
-	private SQLiteDatabase getDatabaseConnection()
+	private ExpensemanagerDatasource getDatabaseConnection()
 	{
 		return new DatabaseConnectionFactory(context)
 		.create(Database.ExpenseManager);

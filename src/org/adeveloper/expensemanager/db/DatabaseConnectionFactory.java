@@ -3,7 +3,6 @@ package org.adeveloper.expensemanager.db;
 import java.security.InvalidParameterException;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
 public final class DatabaseConnectionFactory
 {
@@ -16,11 +15,12 @@ public final class DatabaseConnectionFactory
 	}
 	
 	
-	public SQLiteDatabase create(Database databaseName) throws InvalidParameterException
+	public ExpensemanagerDatasource create(Database databaseName) throws InvalidParameterException
 	{
 		switch (databaseName){
 			case ExpenseManager:
-				return new ExpensemanagerHelper(context).getWritableDatabase();
+				return new ExpensemanagerDatasource(
+							new ExpensemanagerHelper(context));
 			default: 
 				throw new InvalidParameterException("Requested Database Does Not Exist!");
 		}
