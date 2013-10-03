@@ -1,7 +1,8 @@
 package org.adeveloper.expensemanager.EventListener;
 
-import org.adeveloper.expensemanager.Balance;
-import org.adeveloper.expensemanager.util.DatabaseConnectionFactory;
+import org.adeveloper.expensemanager.db.Database;
+import org.adeveloper.expensemanager.db.DatabaseConnectionFactory;
+import org.adeveloper.expensemanager.lib.Balance;
 import org.adeveloper.expensemanager.util.Notification;
 
 import android.app.AlertDialog;
@@ -100,7 +101,7 @@ public final class CalculateBalance implements OnClickListener
 	private SQLiteDatabase getDatabaseConnection()
 	{
 		return new DatabaseConnectionFactory(context)
-		.create(DatabaseConnectionFactory.DATABASE_EXPENSECHEKER);
+		.create(Database.ExpenseManager);
 	}
 	
 	private void resetBalanceField()

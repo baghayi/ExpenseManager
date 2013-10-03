@@ -1,9 +1,10 @@
 package org.adeveloper.expensemanager.EventListener;
 
-import org.adeveloper.expensemanager.Balance;
-import org.adeveloper.expensemanager.Expense;
 import org.adeveloper.expensemanager.MainActivity;
-import org.adeveloper.expensemanager.util.DatabaseConnectionFactory;
+import org.adeveloper.expensemanager.db.Database;
+import org.adeveloper.expensemanager.db.DatabaseConnectionFactory;
+import org.adeveloper.expensemanager.lib.Balance;
+import org.adeveloper.expensemanager.lib.Expense;
 import org.adeveloper.expensemanager.util.Notification;
 
 import android.content.Context;
@@ -50,19 +51,14 @@ public class NewExpense implements OnClickListener
 		
 		SQLiteDatabase database = getDatabaseConnection();
 		
-		
-		Expense expenseObject = new Expense(database);
-		Balance balance = new Balance(database);
-		
-		boolean resultState = false;
+		boolean result = false;
 		try
 		{
 			database.beginTransaction();
-			boolean expenseTableResult = expenseObject.add(getCaption(), getPrice());
-			boolean balanceTableResult = balance.subtract(getPrice());
+			Expense expenseObject = new Expense(database);
+			result = expenseObject.add(getCaption(), getPrice(), new Balance(database));
 			
-			if(expenseTableResult && balanceTableResult){
-				resultState = true;
+			if(result){
 				database.setTransactionSuccessful();
 				caption.setText("");
 				price.setText("");
@@ -76,13 +72,13 @@ public class NewExpense implements OnClickListener
 		}
 
 		((MainActivity) context).updateCurrentAvailableMoney();
-		Notification.successFailureToastMessage(context, resultState);
+		Notification.successFailureToastMessage(context, result);
 	}
 	
 	// TODO feels like code smell!
 	private SQLiteDatabase getDatabaseConnection(){
 		return new DatabaseConnectionFactory(context)
-				.create(DatabaseConnectionFactory.DATABASE_EXPENSECHEKER);
+				.create(Database.ExpenseManager);
 	}
 
 }

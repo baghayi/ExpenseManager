@@ -1,5 +1,7 @@
-package org.adeveloper.expensemanager;
+package org.adeveloper.expensemanager.lib;
 
+
+import org.adeveloper.expensemanager.db.ExpensemanagerHelper;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -10,19 +12,10 @@ public class Balance {
 	
 	SQLiteDatabase database = null;
 	
+	private long lastInsertId;
+	
 	public Balance(SQLiteDatabase database){
 		this.database = database;
-		createBalanceTable();
-	}
-	
-	private void createBalanceTable(){
-		String query = "CREATE TABLE IF NOT EXISTS balance ("
-				+ "Id INTEGER PRIMARY KEY,"
-				+ "NewBalance int(20),"
-				+ "TotalBalance int(20),"
-				+ "UpdateTime int(20)"
-				+ ");";
-		database.execSQL(query);
 	}
 	
 	
@@ -46,7 +39,8 @@ public class Balance {
 		values.put("TotalBalance", totalBalance);
 		values.put("UpdateTime", System.currentTimeMillis());
 		
-		long result = database.insert("balance", null, values);
+		long result = database.insert(ExpensemanagerHelper.TABLE_NAME_BALANCE, null, values);
+		lastInsertId = result;
 		
 		if(result == -1){
 			return false;
@@ -55,9 +49,14 @@ public class Balance {
 		}
 	}
 	
+	public long getLastInsertId()
+	{
+		return lastInsertId;
+	}
+	
 	
 	public double getCurrentBalance() {
-		String query = "SELECT TotalBalance FROM balance ORDER BY Id DESC LIMIT 1;";
+		String query = "SELECT TotalBalance FROM " + ExpensemanagerHelper.TABLE_NAME_BALANCE + " ORDER BY Id DESC LIMIT 1;";
 		Cursor result = database.rawQuery(query, null);
 		result.moveToFirst();
 		int columnIndex = result.getColumnIndex("TotalBalance");

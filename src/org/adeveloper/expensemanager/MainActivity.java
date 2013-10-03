@@ -3,7 +3,9 @@ package org.adeveloper.expensemanager;
 import java.text.NumberFormat;
 
 import org.adeveloper.expensemanager.EventListener.NewExpense;
-import org.adeveloper.expensemanager.util.DatabaseConnectionFactory;
+import org.adeveloper.expensemanager.db.Database;
+import org.adeveloper.expensemanager.db.DatabaseConnectionFactory;
+import org.adeveloper.expensemanager.lib.Balance;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -78,7 +80,7 @@ public class MainActivity extends Activity {
 	private SQLiteDatabase getDatabaseConnection()
 	{
 		return new DatabaseConnectionFactory(this)
-		.create(DatabaseConnectionFactory.DATABASE_EXPENSECHEKER);
+		.create(Database.ExpenseManager);
 	}
 
 }
