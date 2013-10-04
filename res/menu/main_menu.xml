@@ -4,5 +4,9 @@
         android:id="@+id/manage_resource" 
         android:title="@string/manage_resource_menu_title" />
     
+    <item 
+        android:id="@+id/expenses_list_menu"
+        android:title="@string/expenses_list_menu_title" />
+    
 
 </menu>
