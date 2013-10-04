@@ -57,6 +57,8 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if(item.getItemId() == R.id.manage_resource){
 			startManageResourceActivity();
+		}else if (item.getItemId() == R.id.expenses_list_menu){
+			startExpensesListActivity();
 		}
 		
 		return super.onOptionsItemSelected(item);
@@ -64,6 +66,12 @@ public class MainActivity extends Activity {
 
 	private void startManageResourceActivity() {
 		Intent intent = new Intent(this, ManageResourcesActivity.class);
+		startActivity(intent);
+	}
+	
+	private void startExpensesListActivity() 
+	{
+		Intent intent = new Intent(this, ExpensesListActivity.class);
 		startActivity(intent);
 	}
 	
