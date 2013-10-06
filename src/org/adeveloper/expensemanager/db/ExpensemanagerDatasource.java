@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class ExpensemanagerDatasource implements Closeable
 {
 	private SQLiteOpenHelper helper;
+	private SQLiteDatabase database;
 	
 	public ExpensemanagerDatasource(SQLiteOpenHelper helper)
 	{
@@ -16,13 +17,15 @@ public class ExpensemanagerDatasource implements Closeable
 	
 	public SQLiteDatabase open()
 	{
-		return helper.getWritableDatabase();
+		database = helper.getWritableDatabase();
+		return database;
 	}
 	
 
 	@Override
 	public void close()
 	{
+		database.close();
 		helper.close();
 	}
 	
