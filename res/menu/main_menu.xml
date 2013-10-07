@@ -6,7 +6,7 @@
     
     <item 
         android:id="@+id/expenses_list_menu"
-        android:title="@string/expenses_list_menu_title" />
+        android:title="@string/expenses_list_title" />
     
 
 </menu>
