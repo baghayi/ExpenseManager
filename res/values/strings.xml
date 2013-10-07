@@ -20,6 +20,6 @@
     <string name="lang_balance_increase_checkbox">+</string>
     <string name="lang_balance_decrease_checkbox">-</string>
     <string name="balance_type_image">نوع عملیات</string>
-    
+    <string name="expenses_list_title">لیست مخارج</string>
 
 </resources>
