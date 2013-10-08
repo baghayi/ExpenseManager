@@ -4,8 +4,9 @@ This project is under constuction and mainly is created for personal usage but i
 
 There are some other features which I am thinking of adding them to the project such as:
     - Ability to backup / restore inserted data.
+    - Ability to backup/restore data to/from dropbox.
     - Project app by a password so it will only be accessible by who actually knows the password.
-    - Listing of all expenses added to app.
+    - Listing of all expenses added to app. (Done)
 
 Other than mentioned features there of codes need refactoring which by the time of developing will be taken care of as well.
 
