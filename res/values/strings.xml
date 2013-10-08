@@ -21,5 +21,8 @@
     <string name="lang_balance_decrease_checkbox">-</string>
     <string name="balance_type_image">نوع عملیات</string>
     <string name="expenses_list_title">لیست مخارج</string>
+    <string name="title_activity_expense_detail">جزئیات</string>
+    <string name="date">تاریخ</string>
+    <string name="lang_price">مبلغ</string>
 
 </resources>
