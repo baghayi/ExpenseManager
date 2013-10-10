@@ -27,7 +27,7 @@ public class ExpensesListActivity extends ListActivity
 		
 		dataList = getExpensesList();
 		ArrayAdapter<ExpenseItem> adapter = new ArrayAdapter<ExpenseItem>(this, 
-				android.R.layout.simple_list_item_1,
+				R.layout.expense_list_item,
 				dataList);
 		setListAdapter(adapter);
 	}
