@@ -59,6 +59,8 @@ public class MainActivity extends Activity {
 			startManageResourceActivity();
 		}else if (item.getItemId() == R.id.expenses_list_menu){
 			startExpensesListActivity();
+		}else if (item.getItemId() == R.id.backup_menu){
+			startBackupActivity();
 		}
 		
 		return super.onOptionsItemSelected(item);
@@ -72,6 +74,12 @@ public class MainActivity extends Activity {
 	private void startExpensesListActivity() 
 	{
 		Intent intent = new Intent(this, ExpensesListActivity.class);
+		startActivity(intent);
+	}
+	
+	private void startBackupActivity()
+	{
+		Intent intent = new Intent(this, BackupActivity.class);
 		startActivity(intent);
 	}
 	
