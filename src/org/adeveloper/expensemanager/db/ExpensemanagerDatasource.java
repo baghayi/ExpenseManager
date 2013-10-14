@@ -6,10 +6,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import org.adeveloper.expensemanager.util.FileUtils;
 
 import android.annotation.SuppressLint;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,6 +21,11 @@ public class ExpensemanagerDatasource implements Closeable
 {
 	private SQLiteOpenHelper helper;
 	private SQLiteDatabase database;
+	
+	private static final String DATABASE_FILE_PATH = 
+			"//data//org.adeveloper.expensemanager//databases//" + ExpensemanagerHelper.DATABASE_NAME;
+	private static final String BACKUP_PATH = 
+			Environment.getExternalStorageDirectory().toString() + "/Expensemanager";
 	
 	/**
 	 * Only used when taking backup.
@@ -50,10 +56,12 @@ public class ExpensemanagerDatasource implements Closeable
 	@SuppressLint("SimpleDateFormat")
 	public boolean backup()
 	{
-		File sd = Environment.getExternalStorageDirectory();
-		sd = new File(sd.toString()+"/Expensemanager");
+		File sd = new File(BACKUP_PATH);
+		if(!sd.exists() && !sd.mkdirs()){
+			return false;
+		}
 		
-		if (sd.canWrite()) {
+	    if (sd.canWrite()) {
 		    Locale locale = new Locale("en_US");
 		    Locale.setDefault(locale);
 		    
@@ -62,41 +70,19 @@ public class ExpensemanagerDatasource implements Closeable
 		    File backupFile = new File(sd, backupFilename);
 		    
 		    File originalDatabase = new File(Environment.getDataDirectory(), 
-		    		"//data//org.adeveloper.expensemanager//databases//" + ExpensemanagerHelper.DATABASE_NAME);
+		    		DATABASE_FILE_PATH);
 		    
 		    if (originalDatabase.exists()) {
-		    	FileChannel source = null;
-		    	FileChannel destination = null;
 		    	
-		    	FileInputStream fileInputStream = null;
-		    	FileOutputStream fileOutputStream = null;
-		    	
-		        try
+	        	try
 				{
-					fileInputStream = new FileInputStream(originalDatabase);
-					source = fileInputStream.getChannel();
-					
-					fileOutputStream = new FileOutputStream(backupFile);
-					destination = fileOutputStream.getChannel();
-					
-					destination.transferFrom(source, 0, source.size());
-					
+					FileUtils.copyFile(new FileInputStream(originalDatabase), 
+							new FileOutputStream(backupFile));
 					return true;
 				} catch (FileNotFoundException e){
 					return false;
 				} catch (IOException e){
 					return false;
-				}finally {
-					try
-					{
-						source.close();
-						destination.close();
-						
-						fileInputStream.close();
-						fileOutputStream.close();
-					} catch (IOException e){
-						return false;
-					}
 				}
 		    }
 		}
@@ -104,5 +90,32 @@ public class ExpensemanagerDatasource implements Closeable
 		return false;
 	}
 	
+	
+	public boolean restore(String backupfileName) {
+		
+		String dbPath = BACKUP_PATH + "//" + backupfileName;
+		
+	    File newDb = new File(dbPath);
+	    File oldDb = new File(Environment.getDataDirectory().toString() + DATABASE_FILE_PATH);
+	    if (newDb.exists()) {
+	        try
+			{
+				FileUtils.copyFile(new FileInputStream(newDb), new FileOutputStream(oldDb));
+			} catch (FileNotFoundException e)
+			{
+				return false;
+			} catch (IOException e)
+			{
+				return false;
+			}
+	        
+	        // Access the copied database so SQLiteHelper will cache it and mark
+	        // it as created.
+	        open();
+	        close();
+	        return true;
+	    }
+	    return false;
+	}
 	
 }
