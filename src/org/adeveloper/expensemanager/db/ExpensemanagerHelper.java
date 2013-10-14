@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class ExpensemanagerHelper extends SQLiteOpenHelper
 {
 	private final static int VERSION_NUMBER = 1;
-	private final static String DATABASE_NAME = "expensemanager"; 
+	public final static String DATABASE_NAME = "expensemanager"; 
 	
 	public final static String TABLE_NAME_BALANCE = "balance";
 	private final String TABLE_STRUCTURE_BALANCE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_BALANCE + " ("

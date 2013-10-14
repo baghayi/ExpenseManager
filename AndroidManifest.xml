@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="10" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -34,6 +35,10 @@
         <activity
             android:name="org.adeveloper.expensemanager.ExpenseDetailActivity"
             android:label="@string/title_activity_expense_detail" >
+        </activity>
+        <activity
+            android:name="org.adeveloper.expensemanager.BackupActivity"
+            android:label="@string/backup" >
         </activity>
     </application>
 

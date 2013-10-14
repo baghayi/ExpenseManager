@@ -24,5 +24,8 @@
     <string name="title_activity_expense_detail">جزئیات</string>
     <string name="date">تاریخ</string>
     <string name="lang_price">مبلغ</string>
+    <string name="backup">پشتیبان گیری</string>
+    <string name="backup_action">گرفتن پشتیبانی</string>
+    <string name="restore_action">بازگرداندن پشتیبان</string>
 
 </resources>

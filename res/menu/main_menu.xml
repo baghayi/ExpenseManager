@@ -8,5 +8,8 @@
         android:id="@+id/expenses_list_menu"
         android:title="@string/expenses_list_title" />
     
+    <item
+        android:id="@+id/backup_menu"
+        android:title="@string/backup" />
 
 </menu>
