@@ -12,9 +12,9 @@ public class FileUtils
      * fromFile. If toFile already exists, then it
      * will be replaced with a copy of fromFile. The name and path
      * of toFile will be that of toFile.
-     * <br/>
-     * <i> Note: fromFile and toFile will be closed by
-     * this function.</i>
+     * 
+     * Note: fromFile and toFile will be closed by
+     * this function.
      * 
      * @param fromFile
      *            - FileInputStream for the file to copy from.
