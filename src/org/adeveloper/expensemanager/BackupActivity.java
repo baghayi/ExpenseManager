@@ -13,19 +13,26 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class BackupActivity extends ListActivity
 {
 	private List<String> backupFilesList;
+	private static final int MENU_DELETE_ITEM_ID = 1001;
+	private int selectedBackupItemPosition;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_backup);
+		registerForContextMenu(getListView());
 		
 		showList();
 	}
@@ -107,4 +114,38 @@ public class BackupActivity extends ListActivity
 		
 		return filesList;
 	}
+	
+	
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo)
+	{
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+		selectedBackupItemPosition = (int) info.id;
+		
+		menu.add(0, MENU_DELETE_ITEM_ID, 0, "حذف");
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item)
+	{
+		if(item.getItemId() == MENU_DELETE_ITEM_ID){
+			String filename = backupFilesList.get(selectedBackupItemPosition);
+			boolean result = removeBackupFile(filename);
+			Notification.successFailureToastMessage(this, result);
+			
+			showList();
+		}
+		return super.onContextItemSelected(item);
+	}
+
+
+	private boolean removeBackupFile(String filename)
+	{
+		File file = new File(Environment.getExternalStorageDirectory().toString()+"/Expensemanager", filename);
+		return file.delete();
+	}
+	
+	
 }
