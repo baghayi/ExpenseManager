@@ -36,7 +36,7 @@ public class NewExpense implements OnClickListener
 	{
 		String priceString = price.getText().toString();
 
-		if(priceString.isEmpty()){
+		if(priceString.length() <= 0){
 			return 0;
 		}
 		return Double.parseDouble(priceString);
@@ -46,7 +46,7 @@ public class NewExpense implements OnClickListener
 	public void onClick(View arg0)
 	{
 		// if both fields not filled with values at the same time, there is no need to continue.
-		if(getCaption().isEmpty() && getPrice() == 0){
+		if((getCaption().length() <= 0) && getPrice() == 0){
 			return;
 		}
 		

@@ -37,7 +37,7 @@ public final class CalculateBalance implements OnClickListener
 	private double getPrice(){
 		String price = balanceField.getText().toString();
 		
-		if(price.isEmpty()){
+		if(price.length() <= 0){
 			return 0;
 		}
 		
